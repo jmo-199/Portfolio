@@ -1,559 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jason M. Moore - Machine Learning Engineer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jason M. Moore - AI / Machine Learning Engineer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --text-color: #333;
-            --bg-color: #f8f9fa;
-            --card-bg: white;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --primary: #facc15;
+      --accent: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #0f172a;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d2440 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-        /* Header & Navigation */
-        header {
-            background: var(--gradient);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: linear-gradient(to right, rgba(15,23,42,0.95), rgba(15,23,42,0.85));
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+      backdrop-filter: blur(16px);
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    nav {
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    .logo span {
+      color: var(--primary);
+    }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
 
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
 
-        /* Hero Section */
-        .hero {
-            background: var(--gradient);
-            color: white;
-            padding: 120px 0 80px;
-            text-align: center;
-        }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease-out;
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
-        }
+    .nav-links a:hover {
+      color: var(--text);
+    }
 
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
-        .hero .bio {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
+    main {
+      margin-top: 4rem;
+    }
 
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
+    /* Hero */
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    .hero {
+      padding: 5rem 0 4rem;
+    }
 
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-        }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 3rem;
+      align-items: center;
+    }
 
-        /* Section Styling */
-        section {
-            padding: 80px 0;
-        }
+    .hero-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-            position: relative;
-        }
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.1rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--accent-color);
-        }
+    .hero-title span {
+      color: var(--primary);
+    }
 
-        /* Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 30rem;
+      margin-bottom: 1.5rem;
+    }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+    }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-        }
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
 
-        .company-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
+    .hero-contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-        .company-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
+    .hero-panel {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(250,204,21,0.15), transparent 60%),
+                  var(--bg-alt);
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.5rem 1.25rem;
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 24px 60px rgba(15,23,42,0.9);
+    }
 
-        .elevance-logo {
-            background: linear-gradient(135deg, #0066cc, #004499);
-        }
+    .hero-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
 
-        .truescripts-logo {
-            background: linear-gradient(135deg, #28a745, #1e7e34);
-        }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+    }
 
-        .accenture-logo {
-            background: linear-gradient(135deg, #a100ff, #7b00cc);
-        }
+    .hero-badge {
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+    }
 
-        .card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
+    .hero-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
 
-        .card .company {
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
+    .metric-card {
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.75rem;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.32);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
 
-        .card .date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
+    .metric-label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      margin-bottom: 0.25rem;
+      color: #6b7280;
+    }
 
-        .card ul {
-            list-style: none;
-            padding-left: 0;
-        }
+    .metric-value {
+      font-size: 0.96rem;
+      color: var(--text);
+    }
 
-        .card ul li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
+    /* Sections */
 
-        .card ul li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
+    section {
+      padding: 3.5rem 0 1.5rem;
+      border-top: 1px solid rgba(31,41,55,0.9);
+    }
 
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.75rem;
+      gap: 1rem;
+    }
 
-        .skill-category {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
 
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
+    .section-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 26rem;
+    }
 
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient);
-        }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+      gap: 2rem;
+    }
 
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
+    .card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1.2rem 1.25rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
 
-        .skill-category h3 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
+    .card-role {
+      font-weight: 600;
+      color: var(--text);
+    }
 
-        .skill-tag {
-            background: var(--accent-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
+    .card-meta {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
 
-        /* Education Section */
-        .education-item {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+    .card-tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0.4rem 0 0.6rem;
+      font-size: 0.75rem;
+    }
 
-        .degree {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
+    .card-tag {
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.35);
+      color: #9ca3af;
+    }
 
-        .institution {
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
+    .card ul {
+      margin-left: 1rem;
+    }
 
-        /* Footer */
-        footer {
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
+    .card li {
+      margin-bottom: 0.35rem;
+    }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
+    /* Skills */
 
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: opacity 0.3s;
-        }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 1rem;
+    }
 
-        .social-links a:hover {
-            opacity: 0.8;
-        }
+    .skills-group-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 0.4rem;
+    }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+    .skills-pill {
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.9);
+      color: var(--muted);
+    }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
+    /* Education */
 
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
+    .edu-item {
+      margin-bottom: 0.7rem;
+    }
 
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
+    .edu-degree {
+      font-weight: 500;
+      color: var(--text);
+    }
 
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
+    .edu-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
 
-            .skills-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* Footer */
+
+    footer {
+      padding: 2.5rem 0 2rem;
+      border-top: 1px solid rgba(31,41,55,0.9);
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: minmax(0,1fr); }
+      .hero-panel { margin-top: 1.5rem; }
+      .grid-2 { grid-template-columns: minmax(0,1fr); }
+      .skills-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .skills-grid { grid-template-columns: minmax(0,1fr); }
+      section { padding-top: 3rem; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">Jason M. Moore</div>
-            <ul class="nav-links">
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">JASON<span>·MOORE</span></div>
+        <ul class="nav-links">
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#highlights">Highlights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="container">
-                <h1>Machine Learning Engineer</h1>
-                <p class="subtitle">Designing and deploying data-driven solutions end‑to‑end.</p>
-                <p class="bio">
-                    I build production-ready machine learning systems, from data pipelines and model development
-                    to scalable deployment and monitoring.
-                </p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span>Email:</span>
-                        <a href="mailto:your.email@example.com">your.email@example.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>GitHub:</span>
-                        <a href="https://github.com/your-github" target="_blank">github.com/your-github</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>LinkedIn:</span>
-                        <a href="https://linkedin.com/in/your-linkedin" target="_blank">linkedin.com/in/your-linkedin</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <div class="container">
-                <h2 class="section-title">Experience</h2>
-                <div class="cards-grid">
-                    <article class="card">
-                        <div class="company-header">
-                            <div class="company-logo elevance-logo">E</div>
-                            <div>
-                                <div class="company">Elevance Health</div>
-                                <div class="date">Machine Learning Engineer • 2023 – Present</div>
-                            </div>
-                        </div>
-                        <ul>
-                            <li>Developed predictive models to improve patient outcomes and reduce costs.</li>
-                            <li>Built data pipelines and evaluation workflows for end‑to‑end experiments.</li>
-                            <li>Collaborated with product and engineering to deploy models to production.</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills">
-            <div class="container">
-                <h2 class="section-title">Skills</h2>
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <span class="skill-icon">🤖</span>
-                        <h3>Machine Learning</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Supervised Learning</span>
-                            <span class="skill-tag">Deep Learning</span>
-                            <span class="skill-tag">NLP</span>
-                            <span class="skill-tag">Model Evaluation</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <span class="skill-icon">⚙️</span>
-                        <h3>MLOps & Data</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">Airflow</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <span class="skill-icon">💻</span>
-                        <h3>Tools & Cloud</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">TensorFlow / PyTorch</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">AWS / GCP</span>
-                            <span class="skill-tag">Linux</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="education">
-            <div class="container">
-                <h2 class="section-title">Education</h2>
-                <div class="education-item">
-                    <div class="degree">B.S. in Computer Science</div>
-                    <div class="institution">Your University</div>
-                    <div class="date">201X – 201X</div>
-                    <p>Relevant coursework: Machine Learning, Data Structures, Algorithms, Statistics.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-                <div class="cards-grid">
-                    <article class="card">
-                        <h3>Project Name</h3>
-                        <p class="date">GitHub • <a href="https://github.com/your-github/your-project" target="_blank">View Code</a></p>
-                        <ul>
-                            <li>Briefly describe the problem you solved and the impact.</li>
-                            <li>Mention the dataset, model(s) used, and evaluation metrics.</li>
-                            <li>Highlight any deployment, dashboards, or monitoring you built.</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Contact</h2>
-                <p style="text-align:center; margin-bottom:1.5rem;">
-                    Interested in collaborating or hiring? Reach out via email or LinkedIn.
-                </p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span>Email:</span>
-                        <a href="mailto:your.email@example.com">your.email@example.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>LinkedIn:</span>
-                        <a href="https://linkedin.com/in/your-linkedin" target="_blank">linkedin.com/in/your-linkedin</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/your-github" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-kicker">AI / MACHINE LEARNING ENGINEER</div>
+          <h1 class="hero-title">
+            Building ML systems that <span>ship</span>.
+          </h1>
+          <p class="hero-subtitle">
+            I design and deploy end‑to‑end machine learning solutions across healthcare and analytics, from massive PySpark pipelines and XGBoost models to LLM‑powered anomaly detection and automation. [file:102]
+          </p>
+          <div class="pill-row">
+            <span class="pill">XGBoost · PySpark · SHAP</span>
+            <span class="pill">LLMs · RAG · NLP</span>
+            <span class="pill">SQL · Data Pipelines</span>
+          </div>
+          <div class="hero-contact">
+            <span>📧 <a href="mailto:jammanalytics@gmail.com">jammanalytics@gmail.com</a></span>
+            <span>📞 (317) 507‑8948</span>
+            <span>🔗 <a href="https://linkedin.com" target="_blank">LinkedIn</a></span>
+            <span>💻 <a href="https://github.com" target="_blank">GitHub</a></span>
+          </div>
         </div>
-        <p>© 2026 Jason M. Moore. All rights reserved.</p>
-    </footer>
+
+        <aside class="hero-panel">
+          <div class="hero-panel-header">
+            <span>Snapshot</span>
+            <span>Indianapolis · Remote‑ready</span>
+          </div>
+          <div class="hero-badges">
+            <span class="hero-badge">Healthcare AI</span>
+            <span class="hero-badge">LLM Workflows</span>
+            <span class="hero-badge">Analytics Automation</span>
+          </div>
+          <div class="hero-metric-grid">
+            <div class="metric-card">
+              <div class="metric-label">Production ML</div>
+              <div class="metric-value">Call‑resolution XGBoost model at Elevance Health with 87% accuracy using millions of records. [file:102]</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">LLM & NLP</div>
+              <div class="metric-value">LLM‑driven anomaly detection, log summarization, and RAG‑based exception workflows. [file:102]</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Analytics</div>
+              <div class="metric-value">Tableau & Power BI dashboards for real‑time healthcare and PBM operations. [file:102]</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Foundations</div>
+              <div class="metric-value">M.S. Applied Data Science + B.A. Artificial Intelligence, Indiana University. [file:102]</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Experience</h2>
+          <p class="section-sub">
+            Recent roles focused on production ML, LLM‑augmented analytics, and data‑driven automation across healthcare and benefits. [file:102]
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-role">Data Scientist · Elevance Health</div>
+                <div class="card-meta">Jan 2025 – Present · Indianapolis, IN</div>
+              </div>
+            </div>
+            <div class="card-tagrow">
+              <span class="card-tag">PySpark</span>
+              <span class="card-tag">XGBoost</span>
+              <span class="card-tag">LLMs</span>
+              <span class="card-tag">Tableau</span>
+            </div>
+            <ul>
+              <li>Built an XGBoost classification model with PySpark and LLM‑based sentence embeddings to predict call resolution probability on millions of interactions, reaching 87% accuracy. [file:102]</li>
+              <li>Used SHAP and LLM‑assisted root cause summaries to explain drivers and delivered insights through Tableau dashboards for stakeholders. [file:102]</li>
+              <li>Applied KeyBERT and LDA topic modeling on call observations to surface emerging themes and recurring operational issues. [file:102]</li>
+              <li>Designed an LLM‑augmented anomaly detection workflow combining TF‑IDF, z‑score thresholds, and LLM summaries to flag abnormal call‑volume trends. [file:102]</li>
+            </ul>
+          </article>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-role">Automation Specialist Intern · Elevance Health</div>
+                <div class="card-meta">May 2024 – Dec 2024 · Indianapolis, IN</div>
+              </div>
+            </div>
+            <div class="card-tagrow">
+              <span class="card-tag">UiPath</span>
+              <span class="card-tag">LLM APIs</span>
+              <span class="card-tag">RAG</span>
+              <span class="card-tag">HIPAA Data</span>
+            </div>
+            <ul>
+              <li>Customized UiPath bots for application performance checks, integrating an LLM API for log summarization and alert classification to improve detection and reduce manual monitoring. [file:102]</li>
+              <li>Built secure automation workflows for HIPAA‑regulated data retrieval, validation, and RAG‑enabled LLM lookups to generate grounded exception summaries. [file:102]</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:1.5rem;">
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-role">Data Scientist · TrueScripts</div>
+                <div class="card-meta">Sep 2023 – May 2024 · Indianapolis, IN</div>
+              </div>
+            </div>
+            <div class="card-tagrow">
+              <span class="card-tag">Python</span>
+              <span class="card-tag">SQL</span>
+              <span class="card-tag">Power BI</span>
+            </div>
+            <ul>
+              <li>Engineered automated pipelines in SQL and Python to preprocess PBM Member Disruption data, improving quality and enabling downstream ML. [file:102]</li>
+              <li>Developed SQL‑backed models integrated into Power BI dashboards for real‑time monitoring of drug coverage and operational trends. [file:102]</li>
+              <li>Performed exploratory data analysis and statistical profiling to identify operational trends and optimize reporting workflows. [file:102]</li>
+            </ul>
+          </article>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-role">Junior Quality Specialist Intern · Accenture</div>
+                <div class="card-meta">Jun 2021 – Aug 2021 · Indianapolis, IN</div>
+              </div>
+            </div>
+            <div class="card-tagrow">
+              <span class="card-tag">Python</span>
+              <span class="card-tag">SQL</span>
+              <span class="card-tag">QA</span>
+            </div>
+            <ul>
+              <li>Implemented Python‑based data validation and automated checks to ensure ML training datasets were consistent and model‑ready. [file:102]</li>
+              <li>Maintained Python testing and deployment pipelines supporting ML/NLP‑integrated PeopleSoft workflows. [file:102]</li>
+              <li>Built SQL data generation pipelines to simulate real business workflows for model evaluation and regression testing. [file:102]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Skills</h2>
+          <p class="section-sub">Tools and technologies I reach for when turning messy data into deployed ML solutions. [file:102]</p>
+        </div>
+
+        <div class="skills-grid">
+          <div>
+            <div class="skills-group-title">Core ML & AI</div>
+            <div class="skills-list">
+              <span class="skills-pill">Machine Learning</span>
+              <span class="skills-pill">Neural Networks</span>
+              <span class="skills-pill">TensorFlow</span>
+              <span class="skills-pill">PyTorch</span>
+              <span class="skills-pill">NLP</span>
+              <span class="skills-pill">Computer Vision</span>
+              <span class="skills-pill">Model Optimization</span>
+              <span class="skills-pill">Feature Engineering</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="skills-group-title">Data & MLOps</div>
+            <div class="skills-list">
+              <span class="skills-pill">Python</span>
+              <span class="skills-pill">SQL</span>
+              <span class="skills-pill">PySpark</span>
+              <span class="skills-pill">Retrieval‑augmented Generation</span>
+              <span class="skills-pill">LLMs</span>
+              <span class="skills-pill">Pipelines</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="skills-group-title">Tools & Platforms</div>
+            <div class="skills-list">
+              <span class="skills-pill">Jupyter Notebook</span>
+              <span class="skills-pill">VS Code</span>
+              <span class="skills-pill">Google Colab</span>
+              <span class="skills-pill">UiPath</span>
+              <span class="skills-pill">Snowflake</span>
+              <span class="skills-pill">AWS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Education</h2>
+          <p class="section-sub">Strong AI and data foundations from Indiana University Indianapolis. [file:102]</p>
+        </div>
+
+        <div class="card">
+          <div class="edu-item">
+            <div class="edu-degree">Master of Science in Applied Data Science</div>
+            <div class="edu-meta">Indiana University Indianapolis · Dec 2024 · Indianapolis, IN</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Art in Artificial Intelligence</div>
+            <div class="edu-meta">Indiana University Indianapolis · May 2024 · Indianapolis, IN</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section id="highlights">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Selected Highlights</h2>
+          <p class="section-sub">A few achievements that show how I work with ML, LLMs, and analytics end‑to‑end. [file:102]</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-role">LLM‑powered anomaly detection</div>
+            <p>
+              Combined LLM summaries, TF‑IDF, and statistical thresholds to surface abnormal call‑volume trends and automatically route insights to business partners. [file:102]
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-role">RAG‑enabled exception workflows</div>
+            <p>
+              Built secure automation around HIPAA data, using RAG‑enabled LLM lookups to generate grounded exception summaries and remediation guidance. [file:102]
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-sub">Open to AI/ML engineer and data science roles where shipped models and measurable impact matter. [file:102]</p>
+        </div>
+
+        <div class="card" style="text-align:center;">
+          <p>📧 <a href="mailto:jammanalytics@gmail.com">jammanalytics@gmail.com</a></p>
+          <p>📞 (317) 507‑8948</p>
+          <p>🔗 <a href="https://linkedin.com" target="_blank">LinkedIn</a> · 💻 <a href="https://github.com" target="_blank">GitHub</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Jason M. Moore · AI / Machine Learning Engineer
+    </div>
+  </footer>
 </body>
 </html>
