@@ -3,46 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jason M. Moore - AI / Machine Learning Engineer</title>
+  <title>Jason M. Moore - AI/ML Engineer</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --primary: #facc15;
-      --accent: #38bdf8;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --card: #0f172a;
+      --bg: #0a0e27;
+      --bg-alt: #0f1429;
+      --primary: #00d4ff;
+      --accent: #7c3aed;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --card: #151b35;
+      --border: rgba(148,163,184,0.2);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1d2440 0, #020617 45%, #000 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
     }
 
+    /* Header */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 50;
-      background: linear-gradient(to right, rgba(15,23,42,0.95), rgba(15,23,42,0.85));
-      border-bottom: 1px solid rgba(148,163,184,0.25);
-      backdrop-filter: blur(16px);
+      z-index: 100;
+      background: rgba(10,14,39,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
 
     nav {
-      height: 4rem;
+      height: 4.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -50,340 +53,464 @@
 
     .logo {
       font-weight: 700;
-      letter-spacing: 0.08em;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
     }
 
-    .logo span {
-      color: var(--primary);
-    }
+    .logo span { color: var(--primary); }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
-      font-size: 0.9rem;
+      gap: 2rem;
+      font-size: 0.95rem;
     }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      position: relative;
-      padding-bottom: 0.1rem;
+      transition: color 0.2s;
     }
 
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.2s ease-out;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    main {
-      margin-top: 4rem;
-    }
+    .nav-links a:hover { color: var(--primary); }
 
     /* Hero */
+    main { margin-top: 4.5rem; }
 
     .hero {
-      padding: 5rem 0 4rem;
+      padding: 6rem 0 5rem;
+      position: relative;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 3rem;
-      align-items: center;
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 70%);
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
     }
 
-    .hero-kicker {
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
     }
 
-    .hero-title {
-      font-size: clamp(2.4rem, 4vw, 3.1rem);
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-title span {
+    .hero-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 2rem;
       color: var(--primary);
-    }
-
-    .hero-subtitle {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 30rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
       margin-bottom: 1.5rem;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .pill {
-      font-size: 0.78rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.4);
-      color: var(--muted);
-    }
-
-    .hero-contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .hero-contact a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .hero-panel {
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(250,204,21,0.15), transparent 60%),
-                  var(--bg-alt);
-      border-radius: 1.5rem;
-      padding: 1.5rem 1.5rem 1.25rem;
-      border: 1px solid rgba(148,163,184,0.35);
-      box-shadow: 0 24px 60px rgba(15,23,42,0.9);
-    }
-
-    .hero-panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
       margin-bottom: 1.25rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+      background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-badges {
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-size: 0.72rem;
-    }
-
-    .hero-badge {
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.4);
-      color: var(--muted);
-    }
-
-    .hero-metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-
-    .metric-card {
-      padding: 0.6rem 0.7rem;
-      border-radius: 0.75rem;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.32);
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .metric-label {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.7rem;
-      margin-bottom: 0.25rem;
-      color: #6b7280;
-    }
-
-    .metric-value {
-      font-size: 0.96rem;
-      color: var(--text);
-    }
-
-    /* Sections */
-
-    section {
-      padding: 3.5rem 0 1.5rem;
-      border-top: 1px solid rgba(31,41,55,0.9);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1.75rem;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .section-title {
-      font-size: 1.3rem;
+    .btn {
+      padding: 0.875rem 1.75rem;
+      border-radius: 0.5rem;
       font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
     }
 
-    .section-sub {
-      font-size: 0.85rem;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,212,255,0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
       color: var(--muted);
-      max-width: 26rem;
+      border: 1px solid var(--border);
     }
 
-    .grid-2 {
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
       display: grid;
-      grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 4rem 0;
     }
 
-    .card {
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 1.2rem 1.25rem;
-      border: 1px solid rgba(148,163,184,0.4);
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.4rem;
-    }
-
-    .card-role {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .card-meta {
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    .card-tagrow {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin: 0.4rem 0 0.6rem;
-      font-size: 0.75rem;
-    }
-
-    .card-tag {
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.35);
-      color: #9ca3af;
-    }
-
-    .card ul {
-      margin-left: 1rem;
-    }
-
-    .card li {
-      margin-bottom: 0.35rem;
-    }
-
-    /* Skills */
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 1rem;
-    }
-
-    .skills-group-title {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-      margin-bottom: 0.4rem;
-    }
-
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-    }
-
-    .skills-pill {
-      padding: 0.22rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.4);
-      background: rgba(15,23,42,0.9);
-      color: var(--muted);
-    }
-
-    /* Education */
-
-    .edu-item {
-      margin-bottom: 0.7rem;
-    }
-
-    .edu-degree {
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .edu-meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* Footer */
-
-    footer {
-      padding: 2.5rem 0 2rem;
-      border-top: 1px solid rgba(31,41,55,0.9);
-      font-size: 0.8rem;
-      color: var(--muted);
+    .stat {
       text-align: center;
     }
 
-    footer a {
-      color: var(--accent);
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-tag {
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    /* Experience Cards */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .experience-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .experience-card:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+    }
+
+    .exp-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-role {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-company {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .tech-tag {
+      padding: 0.4rem 0.9rem;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .exp-achievements {
+      list-style: none;
+    }
+
+    .exp-achievements li {
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .exp-achievements li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .skill-category {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .skill-category:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .skill-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-item {
+      padding: 0.4rem 0.8rem;
+      background: rgba(148,163,184,0.1);
+      border-radius: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Projects Highlight */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .project-desc {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* Education */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .edu-degree {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-school {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-year {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 3rem auto 0;
+    }
+
+    .contact-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      transition: all 0.3s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-item a {
+      color: var(--text);
       text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
     /* Responsive */
-
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: minmax(0,1fr); }
-      .hero-panel { margin-top: 1.5rem; }
-      .grid-2 { grid-template-columns: minmax(0,1fr); }
-      .skills-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    @media (max-width: 768px) {
+      .hero { padding: 4rem 0 3rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .stats-bar { grid-template-columns: 1fr; gap: 2rem; }
       .nav-links { display: none; }
-    }
-
-    @media (max-width: 640px) {
-      .skills-grid { grid-template-columns: minmax(0,1fr); }
-      section { padding-top: 3rem; }
+      section { padding: 3rem 0; }
     }
   </style>
 </head>
@@ -391,12 +518,12 @@
   <header>
     <div class="container">
       <nav>
-        <div class="logo">JASON<span>·MOORE</span></div>
+        <div class="logo">Jason<span>Moore</span></div>
         <ul class="nav-links">
           <li><a href="#experience">Experience</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#education">Education</a></li>
-          <li><a href="#highlights">Highlights</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -404,195 +531,301 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="hero-kicker">AI / MACHINE LEARNING ENGINEER</div>
-          <h1 class="hero-title">
-            Deploying <span>Agentic</span> ML Systems.
-          </h1>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-tag">AI/ML ENGINEER • APPLIED AI SCIENTIST</div>
+          <h1>Building Intelligent Systems That Learn, Adapt, and Scale</h1>
           <p class="hero-subtitle">
-            Specializing in R&D for Agentic AI workflows at Elevance Health, building self‑correcting systems that bridge the gap between predictive ML and generative automation.
+            Specializing in AI infrastructure, agentic workflows, and production ML systems. Currently architecting serverless AI pipelines and explainable ML solutions at Elevance Health.
           </p>
-          <div class="pill-row">
-            <span class="pill">Agentic AI · RAG · XGBoost</span>
-            <span class="pill">PySpark · Snowflake · LLMs</span>
-            <span class="pill">NLP · RCA Automation</span>
-          </div>
-          <div class="hero-contact">
-            <span>📧 <a href="mailto:jammanalytics@gmail.com">jammanalytics@gmail.com</a></span>
-            <span>📞 (317) 507‑8948</span>
-            <span>🔗 <a href="https://linkedin.com/in/jmoore-analytics" target="_blank">LinkedIn</a></span>
-            <span>💻 <a href="https://github.com/jmoore-ai" target="_blank">GitHub</a></span>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="https://github.com/jmoore-ai" target="_blank" class="btn btn-secondary">View GitHub</a>
           </div>
         </div>
-
-        <aside class="hero-panel">
-          <div class="hero-panel-header">
-            <span>R&D Snapshot</span>
-            <span>Indianapolis · Remote‑ready</span>
-          </div>
-          <div class="hero-badges">
-            <span class="hero-badge">Agentic Workflows</span>
-            <span class="hero-badge">Root Cause AI</span>
-            <span class="hero-badge">Healthcare Analytics</span>
-          </div>
-          <div class="hero-metric-grid">
-            <div class="metric-card">
-              <div class="metric-label">XGBoost Agent</div>
-              <div class="metric-value">Self-diagnosing model predicting call resolution with 87% accuracy and automated RCA.</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-label">LLM & RAG</div>
-              <div class="metric-value">Agentic anomaly detection using historical lookups for volume-spike summarization.</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-label">Analytics</div>
-              <div class="metric-value">Actionable insights with sentiment, hold time, and call count metric integration.</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-label">Foundations</div>
-              <div class="metric-value">M.S. Applied Data Science + B.A. Artificial Intelligence, IU Indianapolis.</div>
-            </div>
-          </div>
-        </aside>
       </div>
     </section>
 
+    <!-- Stats -->
+    <div class="container">
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-value">2+</div>
+          <div class="stat-label">Years in AI/ML</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">10+</div>
+          <div class="stat-label">ML Models Deployed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Agentic AI Systems</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">M.S.</div>
+          <div class="stat-label">Applied Data Science</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
     <section id="experience">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Experience</h2>
-          <p class="section-sub">
-            Leading R&D for Agentic AI and RAG workflows within healthcare and operational environments.
-          </p>
+          <div class="section-tag">Career</div>
+          <h2 class="section-title">Professional Experience</h2>
+          <p class="section-desc">Building production AI systems in healthcare and enterprise environments</p>
         </div>
 
-        <div class="grid-2">
-          <article class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-role">Data Scientist (R&D) · Elevance Health</div>
-                <div class="card-meta">Jan 2025 – Present · Indianapolis, IN</div>
+        <div class="timeline">
+          <div class="experience-card">
+            <div class="exp-header">
+              <h3 class="exp-role">Business Information Analyst II</h3>
+              <div class="exp-company">Elevance Health</div>
+              <div class="exp-meta">
+                <span>📍 Indianapolis, IN</span>
+                <span>📅 Jan 2025 - Present</span>
               </div>
             </div>
-            <div class="card-tagrow">
-              <span class="card-tag">Agentic AI</span>
-              <span class="card-tag">RAG</span>
-              <span class="card-tag">XGBoost</span>
-              <span class="card-tag">PySpark</span>
-            </div>
-            <ul>
-              <li>Developing an **Agentic AI** system where an XGBoost model predicts call resolution probability using PySpark, categorical encoding, and LLM‑based embeddings.</li>
-              <li>Engineered a self‑triggering workflow: if resolution probability drops below a specific threshold, the LLM initiates a Root Cause Analysis (RCA) considering sentiment, hold times, and metrics.</li>
-              <li>Implementing **RAG‑driven Anomaly Detection** that monitors call volume spikes and triggers an autonomous agent to analyze historical vs. current counts for rapid RCA summaries.</li>
-              <li>Designing automated alerts that deliver plain-language summaries explaining "the why" behind low model confidence or high volume spikes.</li>
-            </ul>
-          </article>
 
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-role">Automation Specialist Intern · Elevance Health</div>
-                <div class="card-meta">May 2024 – Dec 2024 · Indianapolis, IN</div>
+            <div class="tech-stack">
+              <span class="tech-tag">Snowflake ML</span>
+              <span class="tech-tag">XGBoost</span>
+              <span class="tech-tag">NLP</span>
+              <span class="tech-tag">KeyBERT</span>
+              <span class="tech-tag">LDA</span>
+              <span class="tech-tag">Tableau</span>
+            </div>
+
+            <ul class="exp-achievements">
+              <li>Architected serverless AI pipeline in Snowflake using Native ML Functions for real-time anomaly detection across multiple lines of business, eliminating manual monitoring overhead</li>
+              <li>Developed resolution-scoring model with XGBoost integrating NLP-summarized context windows for explainable AI insights on low-confidence escalation cases</li>
+              <li>Applied KeyBERT and LDA topic modeling to identify emerging drivers of low-resolution interactions, translating insights into actionable Tableau dashboards</li>
+              <li>Built SQL-driven KPI reporting infrastructure standardizing logic across business units for improved stakeholder visibility</li>
+              <li>Engineered UiPath automations to streamline recurring analytics workflows, reducing manual effort by 40%</li>
+            </ul>
+          </div>
+
+          <div class="experience-card">
+            <div class="exp-header">
+              <h3 class="exp-role">Automation Specialist Intern</h3>
+              <div class="exp-company">Elevance Health</div>
+              <div class="exp-meta">
+                <span>📍 Indianapolis, IN</span>
+                <span>📅 May 2024 - Dec 2024</span>
               </div>
             </div>
-            <div class="card-tagrow">
-              <span class="card-tag">UiPath</span>
-              <span class="card-tag">LLM APIs</span>
-              <span class="card-tag">HIPAA Data</span>
+
+            <div class="tech-stack">
+              <span class="tech-tag">UiPath</span>
+              <span class="tech-tag">LLM APIs</span>
+              <span class="tech-tag">RAG</span>
+              <span class="tech-tag">HIPAA Compliance</span>
             </div>
-            <ul>
-              <li>Integrated LLM APIs for log summarization and alert classification into UiPath bot frameworks, reducing manual monitoring of app performance.</li>
-              <li>Built secure, RAG‑enabled LLM lookup workflows for HIPAA‑regulated data to generate grounded exception summaries.</li>
+
+            <ul class="exp-achievements">
+              <li>Designed and deployed UiPath RPA bots for automated application performance monitoring, including log extraction and intelligent alerting</li>
+              <li>Architected end-to-end RPA workflows within HIPAA-compliant framework using secure credential management and encrypted data handling for sensitive healthcare records</li>
+              <li>Integrated LLM APIs for log summarization and alert classification, reducing manual triage time by 60%</li>
+            </ul>
+          </div>
+
+          <div class="experience-card">
+            <div class="exp-header">
+              <h3 class="exp-role">Data Scientist</h3>
+              <div class="exp-company">TrueScripts</div>
+              <div class="exp-meta">
+                <span>📍 Indianapolis, IN</span>
+                <span>📅 Sep 2023 - May 2024</span>
+              </div>
+            </div>
+
+            <div class="tech-stack">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">SQL</span>
+              <span class="tech-tag">Power BI</span>
+              <span class="tech-tag">ETL Pipelines</span>
+            </div>
+
+            <ul class="exp-achievements">
+              <li>Built automated data pipelines in SQL and Python for PBM Member Disruption data preprocessing, enabling downstream ML applications</li>
+              <li>Developed SQL-backed data models integrated into Power BI for real-time monitoring dashboards tracking drug coverage and operational trends</li>
+              <li>Applied statistical methods and EDA to identify operational inefficiencies, increasing reporting efficiency by 25%</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Skills -->
     <section id="skills">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Skills</h2>
-          <p class="section-sub">Architecting systems that combine predictive power with generative reasoning.</p>
+          <div class="section-tag">Capabilities</div>
+          <h2 class="section-title">Technical Expertise</h2>
+          <p class="section-desc">Full-stack AI/ML engineering from research to production deployment</p>
         </div>
 
         <div class="skills-grid">
-          <div>
-            <div class="skills-group-title">Agentic AI & LLMs</div>
-            <div class="skills-list">
-              <span class="skills-pill">Agentic Workflows</span>
-              <span class="skills-pill">RAG</span>
-              <span class="skills-pill">Sentence Embeddings</span>
-              <span class="skills-pill">NLP</span>
-              <span class="skills-pill">Prompt Engineering</span>
-              <span class="skills-pill">RCA Automation</span>
+          <div class="skill-category">
+            <div class="skill-icon">🤖</div>
+            <h3 class="skill-title">AI & Machine Learning</h3>
+            <div class="skill-list">
+              <span class="skill-item">XGBoost</span>
+              <span class="skill-item">PyTorch</span>
+              <span class="skill-item">TensorFlow</span>
+              <span class="skill-item">Scikit-learn</span>
+              <span class="skill-item">Feature Engineering</span>
+              <span class="skill-item">Model Optimization</span>
             </div>
           </div>
 
-          <div>
-            <div class="skills-group-title">ML & Data Science</div>
-            <div class="skills-list">
-              <span class="skills-pill">XGBoost</span>
-              <span class="skills-pill">PySpark</span>
-              <span class="skills-pill">SQL</span>
-              <span class="skills-pill">Categorical Encoding</span>
-              <span class="skills-pill">Anomaly Detection</span>
-              <span class="skills-pill">Feature Engineering</span>
+          <div class="skill-category">
+            <div class="skill-icon">💬</div>
+            <h3 class="skill-title">NLP & LLMs</h3>
+            <div class="skill-list">
+              <span class="skill-item">RAG Systems</span>
+              <span class="skill-item">KeyBERT</span>
+              <span class="skill-item">LDA</span>
+              <span class="skill-item">Embeddings</span>
+              <span class="skill-item">Prompt Engineering</span>
+              <span class="skill-item">LLM APIs</span>
             </div>
           </div>
 
-          <div>
-            <div class="skills-group-title">Cloud & Platforms</div>
-            <div class="skills-list">
-              <span class="skills-pill">Snowflake ML</span>
-              <span class="skills-pill">AWS</span>
-              <span class="skills-pill">Power BI</span>
-              <span class="skills-pill">Tableau</span>
-              <span class="skills-pill">UiPath</span>
-              <span class="skills-pill">Jupyter</span>
+          <div class="skill-category">
+            <div class="skill-icon">☁️</div>
+            <h3 class="skill-title">Cloud & MLOps</h3>
+            <div class="skill-list">
+              <span class="skill-item">Snowflake ML</span>
+              <span class="skill-item">AWS</span>
+              <span class="skill-item">CI/CD</span>
+              <span class="skill-item">Docker</span>
+              <span class="skill-item">Model Monitoring</span>
+              <span class="skill-item">UiPath</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-icon">📊</div>
+            <h3 class="skill-title">Data Engineering</h3>
+            <div class="skill-list">
+              <span class="skill-item">Python</span>
+              <span class="skill-item">SQL</span>
+              <span class="skill-item">PySpark</span>
+              <span class="skill-item">ETL Pipelines</span>
+              <span class="skill-item">Data Modeling</span>
+              <span class="skill-item">Power BI</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="highlights">
+    <!-- Projects -->
+    <section id="projects">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Technical Highlights</h2>
-          <p class="section-sub">A closer look at the Agentic R&D projects I am currently scaling.</p>
+          <div class="section-tag">Innovation</div>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-desc">Production AI systems driving real business impact</p>
         </div>
 
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-role">Agentic XGBoost Pipeline</div>
-            <p>
-              Integrated traditional ML with Generative AI by using an LLM to analyze call summaries, generate embeddings, and provide real-time RCA for low-probability resolution predictions.
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3 class="project-title">Agentic XGBoost Pipeline</h3>
+            <p class="project-desc">
+              Built an intelligent resolution-prediction system combining traditional ML with generative AI. The model uses LLM-generated embeddings from call summaries to predict resolution probability, automatically triggering root cause analysis for low-confidence cases.
             </p>
+            <div class="tech-stack">
+              <span class="tech-tag">XGBoost</span>
+              <span class="tech-tag">LLMs</span>
+              <span class="tech-tag">NLP</span>
+            </div>
           </div>
-          <div class="card">
-            <div class="card-role">RAG-Based Volumetric Monitoring</div>
-            <p>
-              Developed an anomaly detection agent that autonomously cross-references current call spikes against historical norms to generate natural language summaries of business disruptions.
+
+          <div class="project-card">
+            <h3 class="project-title">Serverless Anomaly Detection</h3>
+            <p class="project-desc">
+              Architected a Snowflake-native ML pipeline that autonomously monitors call volumes across multiple business lines, detecting spikes in real-time and generating natural language explanations for service disruptions.
             </p>
+            <div class="tech-stack">
+              <span class="tech-tag">Snowflake ML</span>
+              <span class="tech-tag">RAG</span>
+              <span class="tech-tag">SQL</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3 class="project-title">HIPAA-Compliant LLM System</h3>
+            <p class="project-desc">
+              Designed secure RAG-enabled workflows for processing sensitive healthcare data, integrating encrypted credential management and audit logging to maintain compliance while enabling AI-powered insights.
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">RAG</span>
+              <span class="tech-tag">UiPath</span>
+              <span class="tech-tag">Security</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Education -->
+    <section id="education">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Academic Foundation</div>
+          <h2 class="section-title">Education</h2>
+        </div>
+
+        <div class="education-grid">
+          <div class="edu-card">
+            <div class="edu-degree">Master of Science</div>
+            <div class="edu-school">Applied Data Science</div>
+            <div class="edu-year">Indiana University Indianapolis • Dec 2024</div>
+          </div>
+
+          <div class="edu-card">
+            <div class="edu-degree">Bachelor of Arts</div>
+            <div class="edu-school">Artificial Intelligence</div>
+            <div class="edu-year">Indiana University Indianapolis • May 2024</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Contact</h2>
-          <p class="section-sub">Looking to discuss Agentic AI, MLOps, or my R&D work at Elevance.</p>
+          <div class="section-tag">Let's Connect</div>
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-desc">Open to AI/ML engineering and applied AI scientist opportunities</p>
         </div>
 
-        <div class="card" style="text-align:center;">
-          <p>📧 <a href="mailto:jammanalytics@gmail.com">jammanalytics@gmail.com</a></p>
-          <p>📞 (317) 507‑8948</p>
-          <p>🔗 <a href="https://linkedin.com/in/jmoore-analytics" target="_blank">LinkedIn</a> · 💻 <a href="https://github.com/jmoore-ai" target="_blank">GitHub</a></p>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <a href="mailto:jammanalytics@gmail.com">jammanalytics@gmail.com</a>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <a href="tel:+13175078948">(317) 507-8948</a>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <a href="https://linkedin.com/in/jmoore-analytics" target="_blank">LinkedIn</a>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">💻</div>
+            <a href="https://github.com/jmoore-ai" target="_blank">GitHub</a>
+          </div>
         </div>
       </div>
     </section>
@@ -600,7 +833,7 @@
 
   <footer>
     <div class="container">
-      © 2026 Jason M. Moore · AI / Machine Learning Engineer
+      <p>© 2026 Jason M. Moore • AI/ML Engineer • Built with passion for intelligent systems</p>
     </div>
   </footer>
 </body>
